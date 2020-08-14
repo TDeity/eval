@@ -1,7 +1,7 @@
 import discord
-import random
 from discord.ext import commands
 import urllib.parse, urllib.request, re
+from contextlib import redirect_stdout
 import asyncio
 from datetime import datetime, timedelta
 import ast
@@ -10,8 +10,8 @@ import io
 import textwrap
 import traceback
 import aiohttp
-from contextlib import redirect_stdout
 import time
+import random
 
 
 """Evaluate Python commands directly through discord. Please note this command can be very dangerous so to protect
