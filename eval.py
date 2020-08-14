@@ -70,8 +70,7 @@ class eval(commands.Cog):
             # remove ```py\n```
 
             if content.startswith('```') and content.endswith('```'):
-
-                return content.replace("```", "")
+                return content.strip("```")
 
 
 
@@ -87,7 +86,7 @@ class eval(commands.Cog):
 
                 return f'```py\n{e.__class__.__name__}: {e}\n```'
 
-            return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
+            return f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
 
 
 
@@ -100,7 +99,6 @@ class eval(commands.Cog):
         stdout = io.StringIO()
 
         err = out = None
-
 
 
         to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
@@ -137,11 +135,12 @@ class eval(commands.Cog):
 
             exec(to_compile, env)
 
+
         except Exception as e:
 
-            err = await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
+            err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{e.__class__.__name__}: {e}\n```')
 
-            return await ctx.message.add_reaction('\u274c')
+            return await ctx.message.add_reaction('❌')
 
 
 
@@ -157,7 +156,7 @@ class eval(commands.Cog):
 
             value = stdout.getvalue()
 
-            err = await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
+            err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{value}{traceback.format_exc()}\n```')
 
         else:
 
@@ -171,7 +170,7 @@ class eval(commands.Cog):
 
                         
 
-                        out = await ctx.send(f'```py\n{value}\n```')
+                        out = await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{value}\n```')
 
                     except:
 
@@ -181,17 +180,18 @@ class eval(commands.Cog):
 
                             if page == paginated_text[-1]:
 
-                                out = await ctx.send(f'```py\n{page}\n```')
+                                out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
 
                                 break
+                            
 
-                            await ctx.send(f'```py\n{page}\n```')
+                            await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
 
             else:
 
                 try:
 
-                    out = await ctx.send(f'```py\n{value}{ret}\n```')
+                    out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{value}{ret}\n```')
 
                 except:
 
@@ -201,34 +201,34 @@ class eval(commands.Cog):
 
                         if page == paginated_text[-1]:
 
-                            out = await ctx.send(f'```py\n{page}\n```')
+                            out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
 
                             break
 
-                        await ctx.send(f'```py\n{page}\n```')
+                        await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
 
 
 
         if out:
+            await ctx.message.add_reaction('\u2705') 
 
-            await ctx.message.add_reaction('\u2705')  
 
         elif err:
 
-            await ctx.message.add_reaction('\u274c') 
+            await ctx.message.add_reaction('\u274c')  
 
         else:
-
-            await ctx.message.add_reaction('\u2705')    
-     
-    @_eval.error
-    async def _eval_error(self, ctx, error):
-        if isinstance(error, commands.CheckFailure):
-            await ctx.message.add_reaction('\u274c')  
-            await ctx.send("```Py\ndiscord.ext.commands.errors.CheckFailure: You are not the bot owner.\n```")
-        if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.message.add_reaction('\u274c') 
-            await ctx.send(f"```Py\ndiscord.ext.commands.errors.MissingRequiredArgument: {error}\n```")
+            await ctx.message.add_reaction('\u2705')  
+         
+ 
+@_eval.error
+async def _eval_error(self, ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.message.add_reaction('\u274c')  
+        await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.message.add_reaction('\u274c') 
+        await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
             
             
 
