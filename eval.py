@@ -211,11 +211,11 @@ class eval(commands.Cog):
 
         if out:
 
-            await ctx.message.add_reaction('\u2705')  # tick
+            await ctx.message.add_reaction('\u2705')  
 
         elif err:
 
-            await ctx.message.add_reaction('\U0000274c')  # x
+            await ctx.message.add_reaction('\U0000274c') 
 
         else:
 
