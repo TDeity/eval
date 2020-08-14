@@ -141,7 +141,7 @@ class eval(commands.Cog):
 
             err = await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
 
-            return await ctx.message.add_reaction('\U0000274c')
+            return await ctx.message.add_reaction('\u274c')
 
 
 
@@ -215,7 +215,7 @@ class eval(commands.Cog):
 
         elif err:
 
-            await ctx.message.add_reaction('\U0000274c') 
+            await ctx.message.add_reaction('\u274c') 
 
         else:
 
@@ -224,10 +224,10 @@ class eval(commands.Cog):
     @_eval.error
     async def _eval_error(self, ctx, error):
         if isinstance(error, commands.CheckFailure):
-            await ctx.message.add_reaction('\U0000274c')  
+            await ctx.message.add_reaction('\u274c')  
             await ctx.send("```Py\ndiscord.ext.commands.errors.CheckFailure: You are not the bot owner.\n```")
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.message.add_reaction('\U0000274c') 
+            await ctx.message.add_reaction('\u274c') 
             await ctx.send(f"```Py\ndiscord.ext.commands.errors.MissingRequiredArgument: {error}\n```")
             
             
