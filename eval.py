@@ -17,7 +17,7 @@ import random
 """Evaluate Python commands directly through discord. Please note this command can be very dangerous so to protect
 your computer and your discord server we've limited this command to the bot owner only!
 
-Credits goes to Deity#6969, for any questions please contact me on Discord!
+Credits goes to Deity#6969, for any queries please contact me on Discord!
 
 REQUIREMENTS:
 discord.py 1.3.4 or higher
@@ -141,7 +141,7 @@ class eval(commands.Cog):
 
             err = await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
 
-            return await ctx.message.add_reaction('❌')
+            return await ctx.message.add_reaction('\U0000274c')
 
 
 
@@ -215,7 +215,7 @@ class eval(commands.Cog):
 
         elif err:
 
-            await ctx.message.add_reaction('❌')  # x
+            await ctx.message.add_reaction('\U0000274c')  # x
 
         else:
 
@@ -224,10 +224,10 @@ class eval(commands.Cog):
     @_eval.error
     async def _eval_error(self, ctx, error):
         if isinstance(error, commands.CheckFailure):
-            await ctx.message.add_reaction('❌')  
+            await ctx.message.add_reaction('\U0000274c')  
             await ctx.send("```Py\ndiscord.ext.commands.errors.CheckFailure: You are not the bot owner.\n```")
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.message.add_reaction('❌') 
+            await ctx.message.add_reaction('\U0000274c') 
             await ctx.send(f"```Py\ndiscord.ext.commands.errors.MissingRequiredArgument: {error}\n```")
             
             
