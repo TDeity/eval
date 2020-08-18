@@ -147,7 +147,7 @@ class eval(commands.Cog):
                 return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
             
             try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
             
             except asyncio.TimeoutError:
                 await err.clear_reactions()
@@ -232,7 +232,7 @@ class eval(commands.Cog):
                 return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
 
             except asyncio.TimeoutError:
                 await out.clear_reactions()
@@ -250,7 +250,7 @@ class eval(commands.Cog):
                 return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
 
             try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
 
             except asyncio.TimeoutError:
                 await err.clear_reactions()
@@ -273,7 +273,7 @@ class eval(commands.Cog):
                 return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
 
             except asyncio.TimeoutError:
                 await out.clear_reactions()
@@ -289,7 +289,7 @@ class eval(commands.Cog):
                 return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
 
             except asyncio.TimeoutError:
                 await out.clear_reactions()
