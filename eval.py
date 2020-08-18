@@ -86,7 +86,7 @@ class eval(commands.Cog):
 
                 return f'```py\n{e.__class__.__name__}: {e}\n```'
 
-            return f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
+            return f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\nFile "{e.filename}", line {e.lineno}\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e.msg}\n```'
 
 
 
@@ -138,7 +138,7 @@ class eval(commands.Cog):
 
         except Exception as e:
 
-            err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{e.__class__.__name__}: {e}\n```')
+            err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\nFile "{e.filename}", line {e.lineno}\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e.msg}\n```')
 
             return await ctx.message.add_reaction('❌')
 
