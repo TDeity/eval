@@ -141,10 +141,10 @@ class eval(commands.Cog):
             err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\nFile "{e.filename}", line {e.lineno}\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e.msg}\n```')
 
             await ctx.message.add_reaction("\u274c")
-            await err.add_reaction("\U0001f5d1")
+            await err.add_reaction("\u23f9")
             
             def check(reaction, user):
-                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
+                return str(reaction.emoji) == "\u23f9" and reaction.message.id == err.id and user.id == ctx.author.id
             
             try:
                 reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
@@ -226,10 +226,10 @@ class eval(commands.Cog):
 
         if out:
             await ctx.message.add_reaction('\u2705') 
-            await out.add_reaction("\U0001f5d1")
+            await out.add_reaction("\u23f9")
 
             def check(reaction, user):
-                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+                return str(reaction.emoji) == "\u23f9" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
                 reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
@@ -244,10 +244,10 @@ class eval(commands.Cog):
         elif err:
 
             await ctx.message.add_reaction('\u274c')  
-            await err.add_reaction("\U0001f5d1")
+            await err.add_reaction("\u23f9")
 
             def check(reaction, user):
-                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
+                return str(reaction.emoji) == "\u23f9" and reaction.message.id == err.id and user.id == ctx.author.id
 
             try:
                 reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
@@ -267,10 +267,10 @@ class eval(commands.Cog):
         if isinstance(error, commands.CheckFailure):
             await ctx.message.add_reaction('\u274c')  
             out = await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
-            await out.add_reaction("\U0001f5d1")
+            await out.add_reaction("\u23f9")
 
             def check(reaction, user):
-                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+                return str(reaction.emoji) == "\u23f9" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
                 reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
@@ -283,10 +283,10 @@ class eval(commands.Cog):
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.message.add_reaction('\u274c') 
             out = await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
-            await out.add_reaction("\U0001f5d1")
+            await out.add_reaction("\u23f9")
 
             def check(reaction, user):
-                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+                return str(reaction.emoji) == "\u23f9" and reaction.message.id == out.id and user.id == ctx.author.id
 
             try:
                 reaction, user = await self.bot.wait_for("reaction_add", timeout=60.0, check=check)
