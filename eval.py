@@ -180,18 +180,18 @@ class eval(commands.Cog):
 
                             if page == paginated_text[-1]:
 
-                                out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
+                                out = await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{page}\n```')
 
                                 break
                             
 
-                            await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
+                            await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{page}\n```')
 
             else:
 
                 try:
 
-                    out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{value}{ret}\n```')
+                    out = await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{value}{ret}\n```')
 
                 except:
 
@@ -201,11 +201,11 @@ class eval(commands.Cog):
 
                         if page == paginated_text[-1]:
 
-                            out = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
+                            out = await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{page}\n```')
 
                             break
 
-                        await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\n{page}\n```')
+                        await ctx.send(f'{ctx.author.mention} \u2705 Your eval job has completed with return code 0.\n\n```py\n{page}\n```')
 
 
 
