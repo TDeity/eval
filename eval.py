@@ -140,7 +140,22 @@ class eval(commands.Cog):
 
             err = await ctx.send(f'{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```py\nFile "{e.filename}", line {e.lineno}\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e.msg}\n```')
 
-            return await ctx.message.add_reaction('❌')
+            await ctx.message.add_reaction("\u274c")
+            await err.add_reaction("\U0001f5d1")
+            
+            def check(reaction, user):
+                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
+            
+            try:
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+            
+            except asyncio.TimeoutError:
+                await err.clear_reactions()
+                return
+            
+            else:
+                await err.delete()
+                return
 
 
 
@@ -211,11 +226,37 @@ class eval(commands.Cog):
 
         if out:
             await ctx.message.add_reaction('\u2705') 
+            await out.add_reaction("\U0001f5d1")
+
+            def check(reaction, user):
+                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+
+            try:
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+
+            except asyncio.TimeoutError:
+                await out.clear_reactions()
+
+            else:
+                await out.delete()
 
 
         elif err:
 
             await ctx.message.add_reaction('\u274c')  
+            await err.add_reaction("\U0001f5d1")
+
+            def check(reaction, user):
+                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == err.id and user.id == ctx.author.id
+
+            try:
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+
+            except asyncio.TimeoutError:
+                await err.clear_reactions()
+
+            else:
+                await err.delete()
 
         else:
             await ctx.message.add_reaction('\u2705')  
@@ -225,11 +266,36 @@ class eval(commands.Cog):
     async def _eval_error(self, ctx, error):
         if isinstance(error, commands.CheckFailure):
             await ctx.message.add_reaction('\u274c')  
-            await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
+            out = await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
+            await out.add_reaction("\U0001f5d1")
+
+            def check(reaction, user):
+                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+
+            try:
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+
+            except asyncio.TimeoutError:
+                await out.clear_reactions()
+
+            else:
+                await out.delete()
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.message.add_reaction('\u274c') 
-            await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
-                
+            out = await ctx.send(f"{ctx.author.mention} \u274c Your eval job has completed with return code 1.\n\n```Py\ndiscord.ext.commands.errors.{error.__class__.__name__}: {error}\n```")
+            await out.add_reaction("\U0001f5d1")
+
+            def check(reaction, user):
+                return str(reaction.emoji) == "\U0001f5d1" and reaction.message.id == out.id and user.id == ctx.author.id
+
+            try:
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+
+            except asyncio.TimeoutError:
+                await out.clear_reactions()
+
+            else:
+                await out.delete()
             
 
 def setup(client):
